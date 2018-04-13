@@ -2,43 +2,56 @@ var userFilters = ["dog", "cat", "small animal", "bird", "lizard"];
 
 // A function to create checkboxes for the user to select which type of pet(s) they're looking for
 
-// A click event to use ajax to return ten pets that meet the criteria
-$("#btn").on("click", function(){
-    var possiblePet = $(this).attr("data-pet");
-    var apiKey = "&api_key=W4PSu7bY";
-    var queryUrl = "https://api.rescuegroups.org/http/" + possiblePet + apiKey;
-    console.log("Hello, is it me you're looking for?");
-    $.ajax({
-        url: queryUrl,
-        method: "GET",
-        /*dataType: "xml",
-        success: function(xml){
-            $(xml).find("dog").each(function(){
-             $("#output").append($(this).attr("code") + "<br />");
-            });
-        }*/
-    })
-    then(function(response) {
-        console.log("Img: ", response);
-        var results = response.data;
+var apiKey = "cd7a4a3fe5a066ee334eed36dd999dca";
+var queryUrl = "http://api.petfinder.com/pet.getRandom";
+var possiblePet;
+console.log("Hello, is it me you're looking for?");
+
+function ajaxCall() {
+$.ajax({
+    url: queryUrl,
+    method: "GET",
+    dataType: "jsonp",
+    jsonp: "callback",
+    data: {
+        key: apiKey,
+        animal: 'cat',
+        output: 'basic',
+        format: 'json'
+    },
+    success: function(response) {
+        console.log(response);
+        console.log("Is this working?");
+        var results = response.petfinder.pet.media.photos;
         console.log(results);
 
         //Loops through every result
-       /* for (var i = 0; i < results.length; i++) {
+        for (var i = 0; i < results.length; i++) {
 
-        var petDiv = $("<div>");
-        petDiv.addClass("box");
-        var imageURL = $("<img>");
-        
-        imageURL.attr(response[i].image);
-        petDiv.append(imageURL);
+            var petDiv = $("<div>");
+            petDiv.addClass("box");
+            var imageURL = $("<img>");
+            
+            imageURL.attr(results[i]);
+            console.log(results[i]);
+            petDiv.append(imageURL);
+            $("#output").prepend(petDiv);
 
-        console.log (queryURL);
-        };
-        */
+            console.log (queryURL);
+            }
+        }
+    }); 
+}
+// A click event to use ajax to return ten pets that meet the criteria
+$( "#button" ).click(function() {
+    possiblePet = $("#data-pet").val().trim();
+    console.log(possiblePet);
+    ajaxCall();
+    
     });
-}) 
 
-
-//"key=9e688b61b50439d4ab91fb4d3031fa6c&limit=10"
-//"http://api.petfinder.com/schemas/0.9/petfinder.xsd?alt=json"
+//"&api_key=W4PSu7bY"
+//"https://api.rescuegroups.org/http/"
+//9e688b61b50439d4ab91fb4d3031fa6c
+//
+        
