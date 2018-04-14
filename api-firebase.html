@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="utf-8">
+ <title>Favorite pet app</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+ <style>
+     .box {
+  position: relative;
+}
+
+.likeit {
+  position: absolute;
+  top: 90%;
+  right: 30px;
+}
+ </style>
+</head>
+
+<body>
+ <div class="container">
+        <h1>Find your special animal friend!</h1>
+        <form id="type">
+            <label>What kind of animal are you looking for?</label>
+            <input type="text" id="data-pet">
+            <label>Your zipcode</label>
+            <input type="text" id="zipcode">
+        </form>
+        <button type="button" name="button" id="button" class="button">Submit</button>
+        <div class="row">
+        <div class="col-md-12">
+        <div id="output">
+            </div>
+        </div>
+        </div>
+ </div>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+ <script type="text/javascript">
+   // The below code fills in the first row of the table
+   var config = {
+    apiKey: "AIzaSyB1vBuIN0-Syw7AmOeu_3uRuaLscBjSIUo",
+    authDomain: "adorable-pets-80a67.firebaseapp.com",
+    databaseURL: "https://adorable-pets-80a67.firebaseio.com",
+    projectId: "adorable-pets-80a67",
+    storageBucket: "adorable-pets-80a67.appspot.com",
+    messagingSenderId: "806861871684"
+  };
+  firebase.initializeApp(config);
+  var database = firebase.database();
+  var likes = 0;
+   var apiKey = "cd7a4a3fe5a066ee334eed36dd999dca";
+var queryUrl = "http://api.petfinder.com/pet.find";
+var possiblePet;
+var userLocation;
+
+console.log("Hello, is it me you're looking for?");
+
+function ajaxCall() {
+$.ajax({
+   url: queryUrl,
+   method: "GET",
+   dataType: "jsonp",
+   jsonp: "callback",
+   data: {
+       key: apiKey,
+       animal: possiblePet,
+       output: 'basic',
+       format: 'json',
+       count: 10,
+       location: userLocation
+   },
+   success:function(response) {
+       console.log(response);
+       console.log("Is this working?");
+       var results = response.petfinder.pets.pet;
+       
+       //Loops through every result to add photos to the page
+       for (var i = 0; i < results.length; i++) {
+        console.log (results[i]);
+           var petDiv = $("<div>");
+            petDiv.attr('class', 'col-md-4');
+           petDiv.addClass("box");
+           var imageURL = $("<img>");
+           imageURL.attr({ width: '350px', height: '300px' });
+           var petId = results[i].id.$t;
+           console.log(petId);
+           imageURL.attr("src", results[i].media.photos.photo[2].$t);
+           //var age = results[i].age;
+           //var p = $("<p>").text
+           petDiv.append(imageURL);
+           //the like image for every pet
+           let likeimg = $("<img>");
+                        likeimg.attr('src', 'heart.png');
+                        likeimg.addClass("likeit");
+                        likeimg.attr({ width: '30px', height: '30px' });
+                        petDiv.prepend(likeimg);
+           petDiv.append(likeimg);
+           $("#output").prepend(petDiv);
+           //add the pet id to the database to identify them uniqely 
+           database.ref('pets/' + petId).on('value', function (snapshot) {
+     console.log("There are "+snapshot.numChildren()+" likes" );
+})
+
+//get the number of likes for every heart click
+           
+           likeimg.on('click', function () {
+          console.log("i cute");
+          database.ref('pets/' + petId).push({liked: "heart"})
+
+        })
+           }
+   
+       }
+    
+   })
+}
+// A click event to use ajax to return ten pets that meet the criteria
+$( "#button" ).click(function() {
+   possiblePet = $("#data-pet").val().trim();
+   userLocation = $("#zipcode").val().trim();
+   console.log(possiblePet);
+   ajaxCall();
+});
+
+    
+ 
+   
+
+ </script>
+</body>
+
+</html>
