@@ -79,12 +79,12 @@ $.ajax({
        //Loops through every result to add photos to the page
        for (var i = 0; i < results.length; i++) {
         console.log (results[i]);
-           var petDiv = $("<div>");
+           let petDiv = $("<div>");
             petDiv.attr('class', 'col-md-4');
            petDiv.addClass("box");
-           var imageURL = $("<img>");
+           let imageURL = $("<img>");
            imageURL.attr({ width: '350px', height: '300px' });
-           var petId = results[i].id.$t;
+           let petId = results[i].id.$t;
            console.log(petId);
            imageURL.attr("src", results[i].media.photos.photo[2].$t);
            //var age = results[i].age;
@@ -100,6 +100,7 @@ $.ajax({
            $("#output").prepend(petDiv);
            //add the pet id to the database to identify them uniqely 
            database.ref('pets/' + petId).on('value', function (snapshot) {
+           
      console.log("There are "+snapshot.numChildren()+" likes" );
 })
 
