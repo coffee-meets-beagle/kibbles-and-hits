@@ -1,7 +1,14 @@
+<script>
 
-# kibbles-and-hits
-A pet adoption web app
-monica 
-eve
-anya 
+var MyNumber = 0
+
+
+console.log (MyNumber)
+
+
+
+
+
+</script>
+
 
