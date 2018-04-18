@@ -23,7 +23,7 @@
           <h2 class="subtitle">
             Match with your perfect pet &hearts;
           </h2>
-          <button class="button is-secondary">Find your pet!</button>
+          <a href="#info-form"><button class="button is-secondary">Find your pet!</button></a>
         </div>
       </div>
     </section>
@@ -61,13 +61,107 @@
       </div>
     </section>
 
+    <section class="info-form" id="info-form">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <label class="label">Animal</label>
+            <div class="control">
+              <div class="select">
+                <select>
+                  <option>Doggo</option>
+                  <option>Kitter</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <label class="label">Age</label>
+            <div class="control">
+              <div class="select">
+                <select>
+                  <option>Pupper</option>
+                  <option>Adult</option>
+                  <option>Senior</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">Your Zip Code</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="94542">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="control">
+          <button class="button is-pulled-right">Find me puppers!</button>
+        </div>
+    </section>
+
+    <section>
+      <div class="columns">
+        <div class="column has-text-centered">
+          <h1 class="title loved-pets-title">
+            Your Pets
+          </h1>
+        </div>
+      </div>
+    </section>
+    <section class="your-pets">
+      <div class="columns loved-pets">
+        <div class="column">
+          <figure class="image is-square">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+          </figure>
+        </div>
+        <div class="column">
+          <figure class="image is-square">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+          </figure>
+        </div>
+        <div class="column">
+          <figure class="image is-square">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+          </figure>
+        </div>
+        <div class="column">
+          <figure class="image is-square">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <button class="button is-primary is-large modal-button" data-target="modal-ter" aria-haspopup="true" id="showModal">Launch card modal</button>
+
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Pets Name!</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <figure class="image is-square">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+          </figure>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button">Pass</button>
+          <button class="button">Info</button>
+          <button class="button is-success">Love</button>
+        </footer>
+      </div>
+    </div>
+
     <footer class="footer">
       <div class="container">
         <div class="content has-text-centered">
           <p>
-            <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+            Find the pet for you &hearts;
           </p>
         </div>
       </div>
