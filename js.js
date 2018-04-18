@@ -1,7 +1,3 @@
-var userFilters = ["dog", "cat", "small animal", "bird", "lizard"];
-
-// A function to create checkboxes for the user to select which type of pet(s) they're looking for
-
 var apiKey = "cd7a4a3fe5a066ee334eed36dd999dca";
 var queryUrl = "http://api.petfinder.com/pet.find";
 var possiblePet;
@@ -74,3 +70,4 @@ $( "#button" ).click(function() {
 //"https://api.rescuegroups.org/http/"
 //9e688b61b50439d4ab91fb4d3031fa6c
 //
+

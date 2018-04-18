@@ -1,14 +1,164 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<head>
-  <meta charset="utf-8">
-  <title>Kibbles and Hits</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/app.css">
+    <!-- <link rel="shortcut icon" href="assets/vulcan.ico" type="image/x-icon"> -->
+    <!-- <link rel="icon" href="assets/vulcan.ico" type="image/x-icon"> -->
 
-<body>
-    <h1>Find your special animal friend!</h1>
+    <title>Kibbles and Hits</title>
+  </head>
+  <body>
+    <section class="hero is-medium is-primary is-bold">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title">
+            Coffee Meets Beagle
+          </h1>
+          <h2 class="subtitle">
+            Match with your perfect pet &hearts;
+          </h2>
+          <a href="#info-form"><button class="button is-secondary">Find your pet!</button></a>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="columns">
+        <div class="column has-text-centered">
+          <h1 class="title loved-pets-title">
+            Most loved pets
+          </h1>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="columns loved-pets">
+        <div class="column">
+          <figure class="image is-square">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+          </figure>
+        </div>
+        <div class="column">
+          <figure class="image is-square">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+          </figure>
+        </div>
+        <div class="column">
+          <figure class="image is-square">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+          </figure>
+        </div>
+        <div class="column">
+          <figure class="image is-square">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-form" id="info-form">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <label class="label">Animal</label>
+            <div class="control">
+              <div class="select">
+                <select>
+                  <option>Doggo</option>
+                  <option>Kitter</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <label class="label">Age</label>
+            <div class="control">
+              <div class="select">
+                <select>
+                  <option>Pupper</option>
+                  <option>Adult</option>
+                  <option>Senior</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">Your Zip Code</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="94542">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="control">
+          <button class="button is-pulled-right">Find me puppers!</button>
+        </div>
+    </section>
+
+    <section>
+      <div class="columns">
+        <div class="column has-text-centered">
+          <h1 class="title loved-pets-title">
+            Your Pets
+          </h1>
+        </div>
+      </div>
+    </section>
+    <section class="your-pets">
+      <div class="columns loved-pets">
+        <div class="column">
+          <figure class="image is-square">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+          </figure>
+        </div>
+        <div class="column">
+          <figure class="image is-square">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+          </figure>
+        </div>
+        <div class="column">
+          <figure class="image is-square">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+          </figure>
+        </div>
+        <div class="column">
+          <figure class="image is-square">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <button class="button is-primary is-large modal-button" data-target="modal-ter" aria-haspopup="true" id="showModal">Launch card modal</button>
+
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Pets Name!</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <figure class="image is-square">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+          </figure>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button">Pass</button>
+          <button class="button">Info</button>
+          <button class="button is-success">Love</button>
+        </footer>
+      </div>
+    </div>
+      
+      <-- Eves stuff -->
+            <h1>Find your special animal friend!</h1>
     <form id="type">
         <label>What kind of animal are you looking for?</label>
         <input type="text" id="data-pet">
@@ -21,5 +171,21 @@
     </div>
     
     <script src="js.js"></script>
-</body>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            Find the pet for you &hearts;
+          </p>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
 </html>
+
