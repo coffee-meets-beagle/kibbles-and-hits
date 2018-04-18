@@ -60,22 +60,46 @@
         </div>
       </div>
     </section>
+<!--
+    <div class="container">
+           <h1>Find your special animal friend!</h1>
+           <form id="type">
+               <label>What kind of animal are you looking for?</label>
+               <input type="text" id="data-pet">
+               <label>Your zipcode</label>
+               <input type="text" id="zipcode">
+           </form>
+           <button type="button" name="button" id="button" class="button">Submit</button>
+           <div class="row">
+           <div class="col-md-12">
+           <div id="output">
+               </div>
+           </div>
+           </div>
+    </div> -->
+
 
     <section class="info-form" id="info-form">
       <div class="container">
         <div class="columns">
+          <div class="column has-text-centered">
+            <h1 class="title has-text-white">Find your special animal friend!</h1>
+          </div>
+        </div>
+        <div class="columns">
           <div class="column">
-            <label class="label">Animal</label>
+            <label class="label has-text-white">Animal</label>
             <div class="control">
               <div class="select">
-                <select>
-                  <option>Doggo</option>
-                  <option>Kitter</option>
+                <select id="data-pet">
+                  <option>dog</option>
+                  <option>cat</option>
+                  <option>rabbit</option>
                 </select>
               </div>
             </div>
           </div>
-          <div class="column">
+          <!-- <div class="column">
             <label class="label">Age</label>
             <div class="control">
               <div class="select">
@@ -86,18 +110,18 @@
                 </select>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="column">
             <div class="field">
-              <label class="label">Your Zip Code</label>
+              <label class="label has-text-white">Your Zip Code</label>
               <div class="control">
-                <input class="input" type="text" placeholder="94542">
+                <input class="input" type="text" id="zipcode" placeholder="94542">
               </div>
             </div>
           </div>
         </div>
         <div class="control">
-          <button class="button is-pulled-right">Find me puppers!</button>
+          <button class="button is-pulled-right" id="find-pets">Find me puppers!</button>
         </div>
     </section>
 
@@ -111,8 +135,8 @@
       </div>
     </section>
     <section class="your-pets">
-      <div class="columns loved-pets">
-        <div class="column">
+      <div class="columns is-multiline loved-pets" id="found-pets">
+        <!-- <div class="column">
           <figure class="image is-square">
             <img src="https://bulma.io/images/placeholders/256x256.png">
           </figure>
@@ -131,9 +155,12 @@
           <figure class="image is-square">
             <img src="https://bulma.io/images/placeholders/256x256.png">
           </figure>
-        </div>
+        </div> -->
       </div>
     </section>
+    <div id="current-pet">
+      <!-- <button class="button is-secondary" id="next">Find your pet!</button> -->
+    </div>
 
     <button class="button is-primary is-large modal-button" data-target="modal-ter" aria-haspopup="true" id="showModal">Launch card modal</button>
 
@@ -144,33 +171,30 @@
           <p class="modal-card-title">Pets Name!</p>
           <button class="delete" aria-label="close"></button>
         </header>
-        <section class="modal-card-body">
-          <figure class="image is-square">
-            <img src="https://bulma.io/images/placeholders/256x256.png">
-          </figure>
+        <section class="modal-card-body" id="card-pets">
+
         </section>
         <footer class="modal-card-foot">
           <button class="button">Pass</button>
           <button class="button">Info</button>
-          <button class="button is-success">Love</button>
+          <button class="button is-success" id="next">Love</button>
         </footer>
       </div>
     </div>
 
-      <-- Eves stuff -->
-            <h1>Find your special animal friend!</h1>
+
+    <!-- <h1>Find your special animal friend!</h1>
     <form id="type">
-        <label>What kind of animal are you looking for?</label>
-        <input type="text" id="data-pet">
-        <label>Your zipcode</label>
-        <input type="text" id="zipcode">
+      <label>What kind of animal are you looking for?</label>
+      <input type="text" id="data-pet">
+      <label>Your zipcode</label>
+      <input type="text" id="zipcode">
     </form>
-    <button type="button" name="button" id="button" class="button">Submit</button>
+    <button type="button" name="button" id="find-pets" class="button">Submit</button> -->
     <div id="output">
 
     </div>
 
-    <script src="js.js"></script>
 
     <footer class="footer">
       <div class="container">
@@ -185,6 +209,8 @@
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
     <script src="assets/js/app.js"></script>
+    <script src="assets/js/js.js"></script>
   </body>
 </html>
