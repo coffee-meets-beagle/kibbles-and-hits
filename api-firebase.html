@@ -100,8 +100,10 @@ $.ajax({
            $("#output").prepend(petDiv);
            //add the pet id to the database to identify them uniqely 
            database.ref('pets/' + petId).on('value', function (snapshot) {
+           var likes = snapshot.numChildren();
            
-     console.log("There are "+snapshot.numChildren()+" likes" );
+           //add an if statement to determine pet with most likes
+     console.log("There are "+likes+" likes" );
 })
 
 //get the number of likes for every heart click
@@ -123,11 +125,7 @@ $( "#button" ).click(function() {
    userLocation = $("#zipcode").val().trim();
    console.log(possiblePet);
    ajaxCall();
-});
-
-    
- 
-   
+});  
 
  </script>
 </body>
