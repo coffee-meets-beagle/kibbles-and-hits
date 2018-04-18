@@ -10,3 +10,21 @@
 .columns:last-child {
     /* margin-bottom: 0; */
 }
+
+.info-form {
+  background-color: #00d1b2;
+  padding: 100px 0;
+}
+
+.select select {
+  width: 100%;
+}
+
+.select {
+  width: 100%;
+}
+
+.modal-card-foot {
+    justify-content: space-evenly;
+    flex-direction: row;
+}

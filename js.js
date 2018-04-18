@@ -1,44 +1,32 @@
-var userFilters = ["dog", "cat", "small animal", "bird", "lizard"];
-
-// A function to create checkboxes for the user to select which type of pet(s) they're looking for
-
-// A click event to use ajax to return ten pets that meet the criteria
-$("#btn").on("click", function(){
-    var possiblePet = $(this).attr("data-pet");
-    var apiKey = "&api_key=W4PSu7bY";
-    var queryUrl = "https://api.rescuegroups.org/http/" + possiblePet + apiKey;
-    console.log("Hello, is it me you're looking for?");
-    $.ajax({
-        url: queryUrl,
-        method: "GET",
-        /*dataType: "xml",
-        success: function(xml){
-            $(xml).find("dog").each(function(){
-             $("#output").append($(this).attr("code") + "<br />");
-            });
-        }*/
-    })
-    then(function(response) {
-        console.log("Img: ", response);
-        var results = response.data;
-        console.log(results);
-
-        //Loops through every result
-       /* for (var i = 0; i < results.length; i++) {
-
-        var petDiv = $("<div>");
-        petDiv.addClass("box");
-        var imageURL = $("<img>");
-        
-        imageURL.attr(response[i].image);
-        petDiv.append(imageURL);
-
-        console.log (queryURL);
-        };
-        */
-    });
-}) 
 
 
-//"key=9e688b61b50439d4ab91fb4d3031fa6c&limit=10"
-//"http://api.petfinder.com/schemas/0.9/petfinder.xsd?alt=json"
+var apiKey = 'cd7a4a3fe5a066ee334eed36dd999dca'; // assign our key to a variable, easier to read
+var url = 'http://api.petfinder.com/pet.getRandom';
+var possiblePet;
+function ajaxCall() {
+  // Within $.ajax{...} is where we fill out our query
+  $.ajax({
+    url: url,
+    jsonp: "callback",
+    dataType: "jsonp",
+    data: {
+      key: apiKey,
+      animal: possiblePet,
+      output: 'basic',
+      format: 'json' //<----- this is where the magic is
+    },
+    // Here is where we handle the response we got back from Petfinder
+    success: function( response ) {
+      console.log(response); // debugging
+
+    }
+  });
+}
+
+
+
+$( "#button" ).click(function() {
+  possiblePet = $("#data-pet").val().trim();
+  console.log(possiblePet);
+  ajaxCall();
+});
