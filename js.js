@@ -40,9 +40,9 @@ $.ajax({
             p2.text("Age: " + age);
             var p3 = $("<p>");
             p3.text("Contact info: " + email + ", " + phone);
-            
+
             imageURL.attr("src", results[i].media.photos.photo[2].$t);
-            
+
             petDiv.append(imageURL);
             petDiv.append(p);
             petDiv.append(p2);
@@ -50,11 +50,11 @@ $.ajax({
             $("#output").prepend(petDiv);
 
             console.log (results[i]);
-        
+
             }
-    
+
         }
-        
+
     })
 }
 // A click event to use ajax to return ten pets that meet the criteria
@@ -63,11 +63,10 @@ $( "#button" ).click(function() {
     userLocation = $("#zipcode").val().trim();
     console.log(possiblePet);
     ajaxCall();
-    
+
     });
 
 //"&api_key=W4PSu7bY"
 //"https://api.rescuegroups.org/http/"
 //9e688b61b50439d4ab91fb4d3031fa6c
 //
-
