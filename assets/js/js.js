@@ -10,7 +10,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var likes = 0;
 var apiKey = "cd7a4a3fe5a066ee334eed36dd999dca";
-var queryUrl = "http://api.petfinder.com/pet.find";
+var queryUrl = "https://api.petfinder.com/pet.find";
 var possiblePet;
 var userLocation;
 var petId;
