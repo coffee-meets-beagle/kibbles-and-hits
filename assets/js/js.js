@@ -16,12 +16,64 @@ var userLocation;
 var petId;
 var likedPets = [];
 
-database.ref().on('value', function(snapshot) {
+database.ref("pets").on("value", function(childSnapshot, prevChildKey) {
+
+  var petNumbers = childSnapshot.val();
+var idUrl = "https://api.petfinder.com/pet.get";
+  var idArray = Object.keys(petNumbers);
+  // console.log(idArray);
+  for(var i=0; i<10; i++){
+   (function(index){
+     $.ajax({
+           url: idUrl,
+           method: "GET",
+           dataType: "jsonp",
+           jsonp: "callback",
+           data: {
+             key: apiKey,
+             // animal: possiblePet,
+             id: idArray[i],
+             // output: 'basic',
+             format: 'json'
+           },
+           success: function(response) {
+             // console.log(response);
+             if ("pet" in response.petfinder) {
+               console.log(response.petfinder.pet);
+
+               let likedPetDiv = $("<div>");
+               likedPetDiv.attr('class', 'column is-one-quarter');
+               let likedImageURL = $("<img>");
+               likedImageURL.attr({
+                 width: '350px',
+                 height: '300px'
+               });
+               likedImageURL.attr("src", response.petfinder.pet.media.photos.photo[2].$t);
+               likedPetDiv.append(likedImageURL);
+
+               $(".loved-pets").prepend(likedPetDiv);
+
+               $("img").sparkle({
+
+                   "color": ["#ff0080","#ff0080","#FFF"] ,
+                   count: 70 ,
+                   overlap: 0,
+                   speed: 1,
+                   minSize: 4,
+                   maxSize: 7,
+                   direction: "both"
+
+               });
+             }
+
+           }
+         });
+   })(i);
+  }
+
+});
 
 
-  //add an if statement to determine pet with most likes
-  console.log("There are " + likes + " likes");
-})
 
 function ajaxCall() {
   $.ajax({
