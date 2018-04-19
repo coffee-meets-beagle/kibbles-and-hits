@@ -14,6 +14,8 @@ var queryUrl = "http://api.petfinder.com/pet.find";
 var possiblePet;
 var userLocation;
 
+var likedPets = [];
+
 console.log("Hello, is it me you're looking for?");
 
 function ajaxCall() {
@@ -37,72 +39,74 @@ function ajaxCall() {
 
       var count = 0;
 
-      $("#next").click(function() {
+      $("#love").click(function() {
 
         if (count < results.length) {
           // console.log(results[count]);
           displayPet();
-          // currentPet.innerHTML = results[count];
-        }
-        else {
+          likePet();
+        } else {
           count = 0;
-          // currentPet.innerHTML = results[count]
         }
-
       });
 
+
+      $("#pass").click(function() {
+        if (count < results.length) {
+          console.log(results[count]);
+          displayPet();
+        } else {
+          count = 0;
+        }
+      });
+
+      $("#info").click(function() {
+        let petInfo = $("<div>");
+        petInfo.attr('class', 'column');
+        petInfo.attr('id', 'pet-card');
+        // petCard.append(likeimg);
+
+        // let petName = $("<h1>");
+        // petName.attr('class', 'title');
+        // petName.text(results[count].name.$t);
+        // console.log(results[count].name);
+
+        let petGender = $("<p>");
+        petGender.text("Gender: " + results[count].sex.$t);
+
+        let petDescription = $("<p>");
+        petDescription.text(results[count].description.$t);
+
+
+        // petInfo.append(petName);
+        petInfo.append(petGender);
+        petInfo.append(petDescription);
+
+        $("#card-pets").append(petInfo);
+      });
+
+
       function displayPet() {
-        // create div for pet image
-        let petCard = $("<div>");
-        petCard.attr('class', 'column');
-        petCard.attr('id', 'pet-card');
-        petCard.attr('style', 'background-image: url(' + results[count].media.photos.photo[2].$t + ')');
 
-        $("#card-pets").html(petCard);
+        $("#card-pets").attr('style', 'background-image: url(' + results[count].media.photos.photo[2].$t + ')');
+        $(".modal-card-title").text(results[count].name.$t);
+        let petSparkle = $("<div>");
+        petSparkle.attr('class', 'pet-sparkle');
 
-        //like images
-        let likeimg = $("<img>");
-        likeimg.attr('src', 'heart.png');
-        likeimg.addClass("likeit");
-        likeimg.attr({
-          width: '30px',
-          height: '30px'
-        });
-        petCard.append(likeimg);
+        $("#card-pets").append(petSparkle);
 
         // increases counter to next pet
         count++;
       }
 
-      displayPet();
-      //Loops through every result to add photos to the page
-      for (var i = 0; i < results.length; i++) {
-        console.log(results[i]);
-        let petDiv = $("<div>");
-        petDiv.attr('class', 'column is-one-quarter');
-        // petDiv.addClass("box");
-        let imageURL = $("<img>");
-        imageURL.attr({
-          width: '350px',
-          height: '300px'
-        });
-        let petId = results[i].id.$t;
-        console.log(petId);
-        imageURL.attr("src", results[i].media.photos.photo[2].$t);
-        //var age = results[i].age;
-        //var p = $("<p>").text
-        petDiv.append(imageURL);
-        //the like image for every pet
-        // let likeimg = $("<img>");
-        // likeimg.attr('src', 'heart.png');
-        // likeimg.addClass("likeit");
-        // likeimg.attr({
-        //   width: '30px',
-        //   height: '30px'
-        // });
-        // petDiv.prepend(likeimg);
-        // petDiv.append(likeimg);
-        $("#found-pets").prepend(petDiv);
+      // this will add the pet to the database and increase the like count
+      function likePet() {
+
+        // add pet to array
+        likedPets.push(results[count]);
+        console.log(likedPets);
+
+        let petId = results[count].id.$t;
         //add the pet id to the database to identify them uniqely
         database.ref('pets/' + petId).on('value', function(snapshot) {
           var likes = snapshot.numChildren();
@@ -112,20 +116,18 @@ function ajaxCall() {
         })
 
         //get the number of likes for every heart click
-
-        likeimg.on('click', function() {
-          console.log("i cute");
           database.ref('pets/' + petId).push({
             liked: "heart"
           })
-
-        })
       }
 
-    }
+      displayPet();
 
+    }
   })
 }
+
+
 // A click event to use ajax to return ten pets that meet the criteria
 $("#find-pets").click(function() {
   possiblePet = $("#data-pet").val().trim();
@@ -136,11 +138,3 @@ $("#find-pets").click(function() {
   $(".modal").addClass("is-active");
 
 });
-
-
-
-
-//"&api_key=W4PSu7bY"
-//"https://api.rescuegroups.org/http/"
-//9e688b61b50439d4ab91fb4d3031fa6c
-//

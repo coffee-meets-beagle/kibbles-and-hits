@@ -171,13 +171,13 @@
           <p class="modal-card-title">Pets Name!</p>
           <button class="delete" aria-label="close"></button>
         </header>
-        <section class="modal-card-body" id="card-pets">
+        <div class="modal-card-body" id="card-pets">
 
-        </section>
+        </div>
         <footer class="modal-card-foot">
-          <button class="button">Pass</button>
-          <button class="button">Info</button>
-          <button class="button is-success" id="next">Love</button>
+          <button class="button" id="pass">Pass</button>
+          <button class="button" id="info">Info</button>
+          <button class="button is-success" id="love">Love</button>
         </footer>
       </div>
     </div>
@@ -210,7 +210,11 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/requestAnimationFrame-polyfill/requestAnimationFrame.js"></script>
+    <script src="dist/jquery-canvas-sparkles.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/js.js"></script>
+
   </body>
 </html>

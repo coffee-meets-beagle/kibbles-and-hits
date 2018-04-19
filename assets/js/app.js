@@ -23,3 +23,40 @@ $(function() {
     }
   });
 });
+
+$(document).ready(function() {
+
+    $("img").sparkle({
+
+        "color": ["#ff0080","#ff0080","#FFF"] ,
+        count: 70 ,
+        speed: 0
+
+    });
+
+    $(".pet-sparkle").sparkle({
+
+        color: ["#2eafea","#e56604"],
+        speed: 0.4
+
+    });
+
+    // $("button").last().sparkle({
+    //     "color": "rainbow" ,
+    //     "minSize": 2 ,
+    //     "maxSize": 5 ,
+    //     "overlap": 20 ,
+    //     "direction": "down" ,
+    //     "speed": 1,
+    //     "fadeSpeed":3000
+    // });
+
+    // $("button").first().sparkle({
+    //     "minSize": 2 ,
+    //     "maxSize": 10 ,
+    //     "overlap": 20 ,
+    //     "direction": "up" ,
+    //     "speed": 0.4
+    // });
+
+});
