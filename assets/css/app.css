@@ -105,10 +105,42 @@ img {
     z-index: 10;
     top: rem;
     height: 400px;
+    width: 100%;
     overflow: auto;
     background-color: white;
 }
 
 #pet-info {
   z-index: 10;
+}
+
+.info-modal {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: none;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    overflow: hidden;
+    position: fixed;
+    z-index: 40;
+}
+
+.info-modal.is-active {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  height: 400px;
 }

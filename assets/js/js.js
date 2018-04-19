@@ -16,13 +16,17 @@ var userLocation;
 var petId;
 var likedPets = [];
 
+//still need to find out how to only load this when page loads not when ever database is updated
+
 database.ref("pets").on("value", function(childSnapshot, prevChildKey) {
 
   var petNumbers = childSnapshot.val();
-var idUrl = "https://api.petfinder.com/pet.get";
+  var idUrl = "https://api.petfinder.com/pet.get";
   var idArray = Object.keys(petNumbers);
+  var dataNumber = 0;
   // console.log(idArray);
-  for(var i=0; i<10; i++){
+  $(".loved-pets").html("");
+  for(var i=0; i<12; i++){
    (function(index){
      $.ajax({
            url: idUrl,
@@ -37,8 +41,52 @@ var idUrl = "https://api.petfinder.com/pet.get";
              format: 'json'
            },
            success: function(response) {
-             // console.log(response);
+             console.log(response);
+
+
+             $(".pet-image").click(function() {
+
+               console.log(response.petfinder.pet.name.$t);
+               $(".info-modal").addClass("is-active");
+               $("#write-info").html("");
+               let petInfo = $("<div>");
+               petInfo.attr('class', 'column');
+               petInfo.attr('id', 'pet-info');
+
+               let petAge = $("<p>");
+               petAge.attr('class', 'subtitle');
+               petAge.text("Age: " + response.petfinder.pet.age.$t);
+
+               let petName = $("<p>");
+               petName.attr('class', 'subtitle');
+               petName.text("Name: " + response.petfinder.pet.name.$t);
+
+               let petGender = $("<p>");
+               petGender.attr('class', 'subtitle');
+               petGender.text("Gender: " + response.petfinder.pet.sex.$t);
+
+               let petCity = $("<p>");
+               petCity.attr('class', 'subtitle');
+               petCity.text("City: " + response.petfinder.pet.contact.city.$t);
+
+               let petPhone = $("<p>");
+               petPhone.attr('class', 'subtitle');
+               petPhone.text("Phone: " + response.petfinder.pet.contact.phone.$t);
+
+               petInfo.append(petName);
+               petInfo.append(petGender);
+               petInfo.append(petAge);
+               petInfo.append(petCity);
+               petInfo.append(petPhone);
+               // petInfo.append(petDescription);
+
+               $("#write-info").append(petInfo);
+
+             });
+
+
              if ("pet" in response.petfinder) {
+
                console.log(response.petfinder.pet);
 
                let likedPetDiv = $("<div>");
@@ -48,10 +96,14 @@ var idUrl = "https://api.petfinder.com/pet.get";
                  width: '350px',
                  height: '300px'
                });
+               likedImageURL.attr('class', 'pet-image');
+               likedImageURL.attr('data-number', dataNumber);
                likedImageURL.attr("src", response.petfinder.pet.media.photos.photo[2].$t);
                likedPetDiv.append(likedImageURL);
 
                $(".loved-pets").prepend(likedPetDiv);
+
+               dataNumber++;
 
                $("img").sparkle({
 
@@ -70,7 +122,6 @@ var idUrl = "https://api.petfinder.com/pet.get";
          });
    })(i);
   }
-
 });
 
 
@@ -168,6 +219,7 @@ function ajaxCall() {
         // petImage.attr({height: '100%', width: 'auto' });
 
         petImage.attr("src", results[count].media.photos.photo[2].$t);
+        // petImage.attr('class', 'pet-image');
 
         $("#card-pets").html(petImage);
 
@@ -207,6 +259,7 @@ function ajaxCall() {
             width: '350px',
             height: '300px'
           });
+          imageURL.attr('class', 'pet-image');
           petId = likedPets[i].id.$t;
           imageURL.attr("src", likedPets[i].media.photos.photo[2].$t);
           //var age = results[i].age;
@@ -224,6 +277,46 @@ function ajaxCall() {
               minSize: 4,
               maxSize: 7,
               direction: "both"
+
+          });
+
+          $(".pet-image").click(function() {
+
+            console.log(response.petfinder.pet.name.$t);
+            $(".info-modal").addClass("is-active");
+            $("#write-info").html("");
+            let petInfo = $("<div>");
+            petInfo.attr('class', 'column');
+            petInfo.attr('id', 'pet-info');
+
+            let petAge = $("<p>");
+            petAge.attr('class', 'subtitle');
+            petAge.text("Age: " + response.petfinder.pet.age.$t);
+
+            let petName = $("<p>");
+            petName.attr('class', 'subtitle');
+            petName.text("Name: " + response.petfinder.pet.name.$t);
+
+            let petGender = $("<p>");
+            petGender.attr('class', 'subtitle');
+            petGender.text("Gender: " + response.petfinder.pet.sex.$t);
+
+            let petCity = $("<p>");
+            petCity.attr('class', 'subtitle');
+            petCity.text("City: " + response.petfinder.pet.contact.city.$t);
+
+            let petPhone = $("<p>");
+            petPhone.attr('class', 'subtitle');
+            petPhone.text("Phone: " + response.petfinder.pet.contact.phone.$t);
+
+            petInfo.append(petName);
+            petInfo.append(petGender);
+            petInfo.append(petAge);
+            petInfo.append(petCity);
+            petInfo.append(petPhone);
+            // petInfo.append(petDescription);
+
+            $("#write-info").append(petInfo);
 
           });
 
@@ -258,6 +351,9 @@ function ajaxCall() {
   })
 }
 
+function getPetInfo() {
+
+}
 
 
 

@@ -8,6 +8,11 @@ $("#show-matches").click(function() {
    $(".modal").removeClass("is-active");
 });
 
+$(".modal-close").click(function() {
+   $(".info-modal").removeClass("is-active");
+   $("#write-info").html("");
+});
+
 // Smooth Scrolling
 $(function() {
   $('a[href*="#"]:not([href="#"])').click(function() {
