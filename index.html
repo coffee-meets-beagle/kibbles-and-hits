@@ -8,22 +8,24 @@
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <link type="text/css" rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
     <!-- <link rel="shortcut icon" href="assets/vulcan.ico" type="image/x-icon"> -->
     <!-- <link rel="icon" href="assets/vulcan.ico" type="image/x-icon"> -->
 
     <title>Kibbles and Hits</title>
   </head>
   <body>
-    <section class="hero is-medium is-primary is-bold">
+    <section class="hero is-medium is-primary">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <h1 class="title">
+          <h1 class="title is-1">
             Coffee Meets Beagle
           </h1>
-          <h2 class="subtitle">
+          <h2 class="subtitle is-3">
             Match with your perfect pet &hearts;
           </h2>
-          <a href="#info-form"><button class="button is-secondary">Find your pet!</button></a>
+          <a href="#info-form"><button class="button is-info is-inverted">Find your pet!</button></a>
         </div>
       </div>
     </section>
@@ -121,11 +123,11 @@
           </div>
         </div>
         <div class="control">
-          <button class="button is-pulled-right" id="find-pets">Find me puppers!</button>
+          <button class="button  is-info is-inverted is-pulled-right" id="find-pets">Find me puppers!</button>
         </div>
     </section>
 
-    <section>
+    <section class="your-pets" id="matches">
       <div class="columns">
         <div class="column has-text-centered">
           <h1 class="title loved-pets-title">
@@ -133,8 +135,6 @@
           </h1>
         </div>
       </div>
-    </section>
-    <section class="your-pets">
       <div class="columns is-multiline loved-pets" id="found-pets">
         <!-- <div class="column">
           <figure class="image is-square">
@@ -158,26 +158,22 @@
         </div> -->
       </div>
     </section>
-    <div id="current-pet">
-      <!-- <button class="button is-secondary" id="next">Find your pet!</button> -->
-    </div>
-
-    <button class="button is-primary is-large modal-button" data-target="modal-ter" aria-haspopup="true" id="showModal">Launch card modal</button>
 
     <div class="modal">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title">Pets Name!</p>
-          <button class="delete" aria-label="close"></button>
+          <a href="#matches"><button class="button is-info is-inverted" id="show-matches">Show Matches</button></a>
+          <!-- <button class="delete" aria-label="close"></button> -->
         </header>
         <div class="modal-card-body" id="card-pets">
 
         </div>
         <footer class="modal-card-foot">
-          <button class="button" id="pass">Pass</button>
-          <button class="button" id="info">Info</button>
-          <button class="button is-success" id="love">Love</button>
+          <button class="button is-danger" id="pass"><i class="fas fa-frown fa-2x"></i></button>
+          <button class="button is-info" id="info"><i class="fas fa-info-circle fa-2x"></i></button>
+          <button class="button is-success" id="love"><i class="fas fa-heart fa-2x"></i></button>
         </footer>
       </div>
     </div>
@@ -210,11 +206,11 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/js.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/requestAnimationFrame-polyfill/requestAnimationFrame.js"></script>
     <script src="dist/jquery-canvas-sparkles.js"></script>
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/js.js"></script>
 
   </body>
 </html>

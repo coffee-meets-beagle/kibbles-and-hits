@@ -4,7 +4,7 @@ $("#showModal").click(function() {
   $(".modal").addClass("is-active");
 });
 
-$(".delete").click(function() {
+$("#show-matches").click(function() {
    $(".modal").removeClass("is-active");
 });
 
@@ -30,7 +30,11 @@ $(document).ready(function() {
 
         "color": ["#ff0080","#ff0080","#FFF"] ,
         count: 70 ,
-        speed: 0
+        overlap: 0,
+        speed: 1,
+        minSize: 4,
+        maxSize: 7,
+        direction: "both"
 
     });
 

@@ -60,16 +60,14 @@ function ajaxCall() {
         }
       });
 
+      $("#show-matches").click(function() {
+        addPetToMatches();
+      });
+
       $("#info").click(function() {
         let petInfo = $("<div>");
         petInfo.attr('class', 'column');
         petInfo.attr('id', 'pet-card');
-        // petCard.append(likeimg);
-
-        // let petName = $("<h1>");
-        // petName.attr('class', 'title');
-        // petName.text(results[count].name.$t);
-        // console.log(results[count].name);
 
         let petGender = $("<p>");
         petGender.text("Gender: " + results[count].sex.$t);
@@ -77,26 +75,80 @@ function ajaxCall() {
         let petDescription = $("<p>");
         petDescription.text(results[count].description.$t);
 
-
         // petInfo.append(petName);
         petInfo.append(petGender);
         petInfo.append(petDescription);
 
         $("#card-pets").append(petInfo);
+
+        // $("#info").attr('id', 'close-info');
       });
 
 
       function displayPet() {
 
-        $("#card-pets").attr('style', 'background-image: url(' + results[count].media.photos.photo[2].$t + ')');
-        $(".modal-card-title").text(results[count].name.$t);
-        let petSparkle = $("<div>");
-        petSparkle.attr('class', 'pet-sparkle');
+        let petImage = $("<img>");
+        // petImage.attr({height: '100%', width: 'auto' });
 
-        $("#card-pets").append(petSparkle);
+        petImage.attr("src", results[count].media.photos.photo[2].$t);
+
+        $("#card-pets").html(petImage);
+
+        // $("#card-pets").attr('style', 'background-image: url(' + results[count].media.photos.photo[2].$t + ')');
+        $(".modal-card-title").text(results[count].name.$t);
+        // let petSparkle = $("<div>");
+        // petSparkle.attr('class', 'pet-sparkle');
+
+        $("img").sparkle({
+
+            "color": ["#ff0080","#ff0080","#FFF"] ,
+            count: 70 ,
+            overlap: 0,
+            speed: 1,
+            minSize: 4,
+            maxSize: 7,
+            direction: "both"
+
+        });
 
         // increases counter to next pet
         count++;
+      }
+
+      function addPetToMatches() {
+        $("#found-pets").html('');
+        $(".your-pets").css('display', 'flex');
+        //pet matches
+        for (var i = 0; i < likedPets.length; i++) {
+
+          let petDiv = $("<div>");
+          petDiv.attr('class', 'column is-one-quarter');
+          let imageURL = $("<img>");
+          imageURL.attr({
+            width: '350px',
+            height: '300px'
+          });
+          let petId = likedPets[i].id.$t;
+          imageURL.attr("src", likedPets[i].media.photos.photo[2].$t);
+          //var age = results[i].age;
+          //var p = $("<p>").text
+          petDiv.append(imageURL);
+
+          $("#found-pets").prepend(petDiv);
+
+          $("img").sparkle({
+
+              "color": ["#ff0080","#ff0080","#FFF"] ,
+              count: 70 ,
+              overlap: 0,
+              speed: 1,
+              minSize: 4,
+              maxSize: 7,
+              direction: "both"
+
+          });
+
+        }
       }
 
       // this will add the pet to the database and increase the like count
@@ -126,6 +178,9 @@ function ajaxCall() {
     }
   })
 }
+
+
+
 
 
 // A click event to use ajax to return ten pets that meet the criteria

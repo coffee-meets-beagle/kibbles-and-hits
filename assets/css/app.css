@@ -5,6 +5,7 @@
 .loved-pets {
   padding: 0 1.5rem;
   margin-bottom: 1.5rem!important;
+  align-items: flex-start;
 }
 
 .columns:last-child {
@@ -14,6 +15,8 @@
 .info-form {
   background-color: #00d1b2;
   padding: 60px 0 100px;
+  background-image: url(../images/Fishbone_Dark.svg);
+  background-blend-mode: soft-light;
 }
 
 .select select {
@@ -38,6 +41,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  object-fit: cover;
 }
 
 #pet-card {
@@ -69,4 +73,25 @@
 .pet-sparkle {
   width: 100%;
   height: 100%;
+}
+
+.your-pets {
+  display: none;
+  flex-direction: column;
+}
+
+.hero {
+  background-image: url(../images/Fishbone_Dark.svg);
+  background-blend-mode: soft-light;
+}
+
+#pass, #info, #love {
+  border-radius: 50%;
+  padding: 15px;
+  height: 4rem;
+}
+
+img {
+  height: 100%;
+  object-fit: contain;
 }
