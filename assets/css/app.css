@@ -85,13 +85,30 @@
   background-blend-mode: soft-light;
 }
 
-#pass, #info, #love {
+#pass, #info, #love, #close-info {
   border-radius: 50%;
   padding: 15px;
   height: 4rem;
 }
 
+#close-info {
+  display: none;
+}
+
 img {
   height: 100%;
   object-fit: contain;
+}
+
+#pet-info {
+    position: absolute;
+    z-index: 10;
+    top: rem;
+    height: 400px;
+    overflow: auto;
+    background-color: white;
+}
+
+#pet-info {
+  z-index: 10;
 }

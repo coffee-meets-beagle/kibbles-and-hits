@@ -13,10 +13,15 @@ var apiKey = "cd7a4a3fe5a066ee334eed36dd999dca";
 var queryUrl = "http://api.petfinder.com/pet.find";
 var possiblePet;
 var userLocation;
-
+var petId;
 var likedPets = [];
 
-console.log("Hello, is it me you're looking for?");
+database.ref().on('value', function(snapshot) {
+
+
+  //add an if statement to determine pet with most likes
+  console.log("There are " + likes + " likes");
+})
 
 function ajaxCall() {
   $.ajax({
@@ -61,15 +66,25 @@ function ajaxCall() {
       });
 
       $("#show-matches").click(function() {
-        addPetToMatches();
+        if (likedPets.length === 0) {
+          $(".your-pets").css('display', 'flex');
+          $("#found-pets").text("you didn't like any pets, try another search");
+        } else {
+          addPetToMatches();
+        }
       });
 
       $("#info").click(function() {
         let petInfo = $("<div>");
         petInfo.attr('class', 'column');
-        petInfo.attr('id', 'pet-card');
+        petInfo.attr('id', 'pet-info');
+
+        let petAge = $("<p>");
+        petAge.attr('class', 'subtitle');
+        petAge.text("Age: " + results[count].age.$t);
 
         let petGender = $("<p>");
+        petGender.attr('class', 'subtitle');
         petGender.text("Gender: " + results[count].sex.$t);
 
         let petDescription = $("<p>");
@@ -77,12 +92,22 @@ function ajaxCall() {
 
         // petInfo.append(petName);
         petInfo.append(petGender);
+        petInfo.append(petAge);
         petInfo.append(petDescription);
 
         $("#card-pets").append(petInfo);
 
-        // $("#info").attr('id', 'close-info');
+        $("#info").css('display', 'none');
+        $("#close-info").css('display', 'flex');
       });
+
+      $("#close-info").click(function() {
+        console.log("closed");
+        $("#pet-info").remove();
+        $("#close-info").css('display', 'none');
+        $("#info").css('display', 'flex');
+      });
+
 
 
       function displayPet() {
@@ -111,6 +136,8 @@ function ajaxCall() {
 
         });
 
+        $("#close-info").css('display', 'none');
+        $("#info").css('display', 'flex');
         // increases counter to next pet
         count++;
       }
@@ -128,7 +155,7 @@ function ajaxCall() {
             width: '350px',
             height: '300px'
           });
-          let petId = likedPets[i].id.$t;
+          petId = likedPets[i].id.$t;
           imageURL.attr("src", likedPets[i].media.photos.photo[2].$t);
           //var age = results[i].age;
           //var p = $("<p>").text
