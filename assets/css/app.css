@@ -8,6 +8,12 @@
   align-items: flex-start;
 }
 
+.most-loved-pets {
+    padding: 0 1.5rem;
+    margin-bottom: 1.5rem!important;
+    align-items: flex-start;
+}
+
 .columns:last-child {
     /* margin-bottom: 0; */
 }
