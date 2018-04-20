@@ -268,8 +268,13 @@ function ajaxCall() {
           let petPhoneNumber = $("<p>");
           petPhoneNumber.text(likedPets[i].contact.phone.$t);
 
-          petDiv.append(petPhoneNumber);
+          let petDisplayName = $("<p>");
+          petDisplayName.attr('class', 'subtitle');
+          petDisplayName.text(likedPets[i].name.$t);
+
+          petDiv.append(petDisplayName);
           petDiv.append(imageURL);
+          petDiv.append(petPhoneNumber);
 
 
           $("#found-pets").prepend(petDiv);
