@@ -25,7 +25,7 @@ database.ref("pets").on("value", function(childSnapshot, prevChildKey) {
   var idArray = Object.keys(petNumbers);
   var dataNumber = 0;
   // console.log(idArray);
-  $(".loved-pets").html("");
+  $(".most-loved-pets").html("");
   for(var i=0; i<12; i++){
    (function(index){
      $.ajax({
@@ -101,7 +101,7 @@ database.ref("pets").on("value", function(childSnapshot, prevChildKey) {
                likedImageURL.attr("src", response.petfinder.pet.media.photos.photo[2].$t);
                likedPetDiv.append(likedImageURL);
 
-               $(".loved-pets").prepend(likedPetDiv);
+               $(".most-loved-pets").prepend(likedPetDiv);
 
                dataNumber++;
 
@@ -264,7 +264,13 @@ function ajaxCall() {
           imageURL.attr("src", likedPets[i].media.photos.photo[2].$t);
           //var age = results[i].age;
           //var p = $("<p>").text
+
+          let petPhoneNumber = $("<p>");
+          petPhoneNumber.text(likedPets[i].contact.phone.$t);
+
+          petDiv.append(petPhoneNumber);
           petDiv.append(imageURL);
+
 
           $("#found-pets").prepend(petDiv);
 
@@ -280,45 +286,45 @@ function ajaxCall() {
 
           });
 
-          $(".pet-image").click(function() {
-
-            console.log(response.petfinder.pet.name.$t);
-            $(".info-modal").addClass("is-active");
-            $("#write-info").html("");
-            let petInfo = $("<div>");
-            petInfo.attr('class', 'column');
-            petInfo.attr('id', 'pet-info');
-
-            let petAge = $("<p>");
-            petAge.attr('class', 'subtitle');
-            petAge.text("Age: " + response.petfinder.pet.age.$t);
-
-            let petName = $("<p>");
-            petName.attr('class', 'subtitle');
-            petName.text("Name: " + response.petfinder.pet.name.$t);
-
-            let petGender = $("<p>");
-            petGender.attr('class', 'subtitle');
-            petGender.text("Gender: " + response.petfinder.pet.sex.$t);
-
-            let petCity = $("<p>");
-            petCity.attr('class', 'subtitle');
-            petCity.text("City: " + response.petfinder.pet.contact.city.$t);
-
-            let petPhone = $("<p>");
-            petPhone.attr('class', 'subtitle');
-            petPhone.text("Phone: " + response.petfinder.pet.contact.phone.$t);
-
-            petInfo.append(petName);
-            petInfo.append(petGender);
-            petInfo.append(petAge);
-            petInfo.append(petCity);
-            petInfo.append(petPhone);
-            // petInfo.append(petDescription);
-
-            $("#write-info").append(petInfo);
-
-          });
+          // $(".pet-image").click(function() {
+          //
+          //   console.log(response.petfinder.pet.name.$t);
+          //   $(".info-modal").addClass("is-active");
+          //   $("#write-info").html("");
+          //   let petInfo = $("<div>");
+          //   petInfo.attr('class', 'column');
+          //   petInfo.attr('id', 'pet-info');
+          //
+          //   let petAge = $("<p>");
+          //   petAge.attr('class', 'subtitle');
+          //   petAge.text("Age: " + response.petfinder.pet.age.$t);
+          //
+          //   let petName = $("<p>");
+          //   petName.attr('class', 'subtitle');
+          //   petName.text("Name: " + response.petfinder.pet.name.$t);
+          //
+          //   let petGender = $("<p>");
+          //   petGender.attr('class', 'subtitle');
+          //   petGender.text("Gender: " + response.petfinder.pet.sex.$t);
+          //
+          //   let petCity = $("<p>");
+          //   petCity.attr('class', 'subtitle');
+          //   petCity.text("City: " + response.petfinder.pet.contact.city.$t);
+          //
+          //   let petPhone = $("<p>");
+          //   petPhone.attr('class', 'subtitle');
+          //   petPhone.text("Phone: " + response.petfinder.pet.contact.phone.$t);
+          //
+          //   petInfo.append(petName);
+          //   petInfo.append(petGender);
+          //   petInfo.append(petAge);
+          //   petInfo.append(petCity);
+          //   petInfo.append(petPhone);
+          //   // petInfo.append(petDescription);
+          //
+          //   $("#write-info").append(petInfo);
+          //
+          // });
 
         }
       }
